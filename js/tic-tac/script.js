@@ -4,13 +4,9 @@ const TABLE    = document.getElementById(FIELD_ID);
 const REFRESH  = document.getElementById("refresh");
 const LOG      = document.getElementById("log");
 
-// In theis block, only the attachment of different handlers will be executed
 initField(SIDE, FIELD_ID);
-log("message 1");
-log("message 2", "warning");
-log("message 3");
-log("message 4", "warning");
-log("message 5", "error");
+// In theis block, only the attachment of different handlers will be executed
+TABLE.addEventListener("click", tableHandler());
 
 // function that creates a playing field
 function initField(side, id){
@@ -19,6 +15,31 @@ function initField(side, id){
 	document.getElementById(id).innerHTML = field;
 }
 
+function tableHandler(){
+	var currentClass = "cross";
+
+	function toggleCurrent(){
+		currentClass = (currentClass == "cross") ? "zero" : "cross";
+	}
+
+	return function(event){
+		if (event.target.nodeName == "TD") {
+			event.stopPropagation();
+			if (event.target.className != "") {
+				return;
+			}
+			event.target.className = currentClass;
+			toggleCurrent();
+		}
+	}
+}
+
+/*
+function that write messages in log's window
+@str - message for a log
+@status - success, warning or error
+          success is default value 
+*/
 function log(str, status) {
 	let stat = status || "success";
 	let res = "<div class='message " + stat + "'>" + str + "</div>";

@@ -28,6 +28,12 @@ td{
 	float: right;
 	border: 3px solid rgba(100, 100, 255, 1);
 }
+.zero{
+	background-color: red;
+}
+.cross{
+	background-color: green;
+}
 #log .message{
 	margin: 2px 0;
 	padding: 3px;
