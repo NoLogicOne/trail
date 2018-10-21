@@ -21,12 +21,17 @@ td{
 	margin-top: 0;
 	text-align: center;
 }
-#log{
+#log_ground{
 	display: inline-block;
 	width: 30vw;
 	height: 100vh;
 	float: right;
 	border: 3px solid rgba(100, 100, 255, 1);
+}
+#clear_log{
+	cursor: pointer;
+	width: 100%;
+	padding: 10px;
 }
 .zero{
 	background-color: red;

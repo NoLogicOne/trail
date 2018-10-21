@@ -7,6 +7,9 @@ const LOG      = document.getElementById("log");
 initField(SIDE, FIELD_ID);
 // In theis block, only the attachment of different handlers will be executed
 TABLE.addEventListener("click", tableHandler());
+document.getElementById("clear_log").addEventListener("click", clearLog);
+
+log("test");
 
 // function that creates a playing field
 function initField(side, id){
@@ -14,6 +17,11 @@ function initField(side, id){
 	field = ("<tr>" + field + "</tr>").repeat(side);
 	document.getElementById(id).innerHTML = field;
 }
+
+/*
+Function, returns a handler function for table cells
+
+*/
 
 function tableHandler(){
 	var currentClass = "cross";
@@ -32,6 +40,10 @@ function tableHandler(){
 			toggleCurrent();
 		}
 	}
+}
+
+function clearLog(){
+	LOG.innerHTML = "";
 }
 
 /*
