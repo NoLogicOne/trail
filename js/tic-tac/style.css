@@ -1,0 +1,35 @@
+body{
+	margin: 0;
+	padding: 10px;
+}
+table{
+	display: inline-block;
+	margin-top: 0;
+	border-spacing: 0;
+}
+td{
+	border: 1px solid rgba(0, 0, 0, .3);
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+}
+#playground{
+	vertical-align: top;
+	display: inline-block;
+	width: 49vw;
+	margin-top: 0;
+	text-align: center;
+}
+#log{
+	display: inline-block;
+	width: 30vw;
+	height: 100vh;
+	float: right;
+	border: 3px solid rgba(100, 100, 255, 1);
+}
+#log .message{
+	background-color: rgba(100, 255, 100, .4);
+	margin: 2px 0;
+	padding: 3px;
+}
