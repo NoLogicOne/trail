@@ -15,11 +15,10 @@ var currentPlayer = player1;
 
 // In theis block, only the attachment of different handlers will be executed
 TABLE.addEventListener("click", tableHandler());
+REFRESH.addEventListener("click", cleanField);
 document.getElementById("clear_log").addEventListener("click", clearLog);
 document.getElementById("start-game").addEventListener("click", startHandler);
-// document.getElementById("setup-form").addEventListener("submit", startHandler);
-document.getElementById("setup-form").addEventListener("submit", log("submit"));
-document.getElementById("setup-form").onsubmit = startHandler;
+document.getElementById("setup-form").addEventListener("submit", startHandler);
 
 // function that creates a playing field
 function initGame(side){
@@ -52,9 +51,16 @@ function tableHandler(){
 	}
 }
 
+function cleanField(){
+	let cells = getCellsFromTable(TABLE);
+
+	for (var i = cells.length - 1; i >= 0; i--) {
+		cells[i].className = "";
+	}
+}
+
 function startHandler(event){
 	event.preventDefault();
-	log("startHandler");
 	player1 = document.getElementById("player1").value;
 	player2 = document.getElementById("player2").value;
 	side    = document.getElementById("side").value;
@@ -62,8 +68,14 @@ function startHandler(event){
 	initGame(side);
 }
 
-function clearLog(){
-	LOG.innerHTML = "";
+function getCellsFromTable(table){
+	let result = [];
+	for (var row = table.rows.length - 1; row >= 0; row--) {
+		for (var cell = table.rows[row].cells.length - 1; cell >= 0; cell--) {
+			result.push(table.rows[row].cells[cell]);
+		}
+	}
+	return result;
 }
 
 /*
@@ -76,5 +88,9 @@ function log(str, status) {
 	let stat = status || "success";
 	let res = "<div class='message " + stat + "'>" + str + "</div>";
 	LOG.innerHTML = res + LOG.innerHTML;
+}
+
+function clearLog(){
+	LOG.innerHTML = "";
 }
 
