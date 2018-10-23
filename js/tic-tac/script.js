@@ -25,7 +25,31 @@ function initGame(side){
 	let field = "<td></td>".repeat(side);
 	field = ("<tr>" + field + "</tr>").repeat(side);
 	TABLE.innerHTML = field;
+	resizeGame();
 	log("Firs move will make " + currentPlayer);
+}
+
+function resizeGame(){
+	let linearSide = getLinearSide();
+	let cells      = getCellsFromTable();
+	
+	for (var i = cells.length - 1; i >= 0; i--) {
+		cells[i].style.width   = linearSide + "px"; 
+		if(i==0) console.log(cells[i].style.with);
+		cells[i].style.height = linearSide + "px";
+	}
+}
+
+function getLinearSide(){
+	let field  = document.getElementById("playground");
+	let header = document.getElementById("header");
+	let minHeight = field.clientHeight - REFRESH.clientHeight - header.clientHeight;
+
+	let linearSide = (field.clientWidth < minHeight) ? 
+						field.clientWidth :
+						minHeight;
+
+	return (linearSide  / side) - 5;
 }
 
 /*
@@ -77,7 +101,8 @@ function startHandler(event){
 	initGame(side);
 }
 
-function getCellsFromTable(table){
+function getCellsFromTable(tableGet){
+	let table = tableGet || TABLE;
 	let result = [];
 	for (var row = table.rows.length - 1; row >= 0; row--) {
 		for (var cell = table.rows[row].cells.length - 1; cell >= 0; cell--) {

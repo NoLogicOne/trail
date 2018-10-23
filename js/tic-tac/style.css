@@ -40,18 +40,22 @@ td{
 	height: 35px;
 	cursor: pointer;
 }
+#play-container{
+	display: grid;
+	grid-template-columns: 7fr 3fr;
+}
 #playground{
-	vertical-align: top;
-	display: inline-block;
-	width: 49vw;
+	/*vertical-align: top;*/
+	/*display: inline-block;*/
+	/*width: 49vw;*/
 	margin-top: 0;
 	text-align: center;
 }
 #log_ground{
-	display: inline-block;
+	/*display: inline-block;*/
 	width: 30vw;
 	height: 100vh;
-	float: right;
+	/*float: right;*/
 	border: 3px solid rgba(100, 100, 255, 1);
 }
 #clear_log{

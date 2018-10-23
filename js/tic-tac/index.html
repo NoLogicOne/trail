@@ -6,7 +6,7 @@
 	<title>tic-tac</title>
 </head>
 <body>
-	<header>
+	<header id="header">
 		<button id="start-game">Start Game!</button>
 		<form action="#" id="setup-form">
 			<div class="block">
@@ -28,15 +28,17 @@
 			<input type="submit" hidden>
 		</form>
 	</header>
-	<div id="playground">
-		<table id="table"></table>
-		<div id="result"></div>
-		<button id="refresh">REFRESH</button>
-	</div>
-	<div id="log_ground">
-		<button id="clear_log">Clear Log</button>
-		<div id="log">
-			
+	<div id="play-container">
+		<div id="playground">
+			<table id="table"></table>
+			<div id="result"></div>
+			<button id="refresh">REFRESH</button>
+		</div>
+		<div id="log_ground">
+			<button id="clear_log">Clear Log</button>
+			<div id="log">
+				 
+			</div>
 		</div>
 	</div>
 	<!-- <script src="./polifill.js"></script> -->
