@@ -25,6 +25,7 @@ function initGame(side){
 	let field = "<td></td>".repeat(side);
 	field = ("<tr>" + field + "</tr>").repeat(side);
 	TABLE.innerHTML = field;
+	log("Firs move will make " + currentPlayer);
 }
 
 /*
@@ -36,7 +37,15 @@ function tableHandler(){
 	var currentClass = "cross";
 
 	function toggleCurrent(){
-		currentClass = (currentClass == "cross") ? "zero" : "cross";
+		if(currentClass == "cross") {
+			currentClass  = "zero";
+			currentPlayer = player2;
+		} else {
+			currentClass  = "cross";
+			currentPlayer = player1;
+		}
+
+		log("now it's a " + currentPlayer + " turn");
 	}
 
 	return function(event){
