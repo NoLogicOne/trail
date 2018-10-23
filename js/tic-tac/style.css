@@ -1,6 +1,32 @@
 body{
 	margin: 0;
-	padding: 10px;
+	padding: 0;
+}
+header{
+	min-height: 55px;
+	padding: 0 20px;
+}
+#start-game{
+	width: 100%;
+	vertical-align: top;
+
+}
+header form{
+	/*padding: 10px;*/
+}
+header form .block{
+	display: inline-block;
+	width: 24%;
+	padding: 10px 0;
+}
+header form input{
+	display: block;
+}
+header form label{
+	position: relative;
+	/*margin-left: 5px;*/
+	/*top: -20px;*/
+	/*left: 40px;*/
 }
 table{
 	display: inline-block;

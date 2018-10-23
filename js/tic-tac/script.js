@@ -9,8 +9,6 @@ initField(SIDE, FIELD_ID);
 TABLE.addEventListener("click", tableHandler());
 document.getElementById("clear_log").addEventListener("click", clearLog);
 
-log("test");
-
 // function that creates a playing field
 function initField(side, id){
 	let field = "<td></td>".repeat(side);
