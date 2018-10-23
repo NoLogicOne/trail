@@ -1,19 +1,19 @@
-const FIELD_ID = "table";
-const SIDE     = 3;
-const TABLE    = document.getElementById(FIELD_ID);
+
+const SIDE     = 0;
+const TABLE    = document.getElementById("table");
 const REFRESH  = document.getElementById("refresh");
 const LOG      = document.getElementById("log");
 
-initField(SIDE, FIELD_ID);
+initField(SIDE);
 // In theis block, only the attachment of different handlers will be executed
 TABLE.addEventListener("click", tableHandler());
 document.getElementById("clear_log").addEventListener("click", clearLog);
 
 // function that creates a playing field
-function initField(side, id){
+function initField(side){
 	let field = "<td></td>".repeat(side);
 	field = ("<tr>" + field + "</tr>").repeat(side);
-	document.getElementById(id).innerHTML = field;
+	TABLE.innerHTML = field;
 }
 
 /*

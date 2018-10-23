@@ -9,24 +9,21 @@ header{
 #start-game{
 	width: 100%;
 	vertical-align: top;
-
+	height: 40px;
 }
 header form{
-	/*padding: 10px;*/
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
 }
 header form .block{
-	display: inline-block;
-	width: 24%;
 	padding: 10px 0;
 }
 header form input{
 	display: block;
+	width: 90%;
 }
 header form label{
 	position: relative;
-	/*margin-left: 5px;*/
-	/*top: -20px;*/
-	/*left: 40px;*/
 }
 table{
 	display: inline-block;
