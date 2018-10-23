@@ -18,6 +18,9 @@ header form{
 header form .block{
 	padding: 10px 0;
 }
+header form input[type="submit"]{
+	display: none;
+}
 header form input{
 	display: block;
 	width: 90%;
@@ -56,6 +59,7 @@ td{
 	width: 100%;
 	padding: 10px;
 }
+/*It's easy to create tic and tac on pure css, but seems to use too many browser resources*/
 .zero{
 	background-color: red;
 }
