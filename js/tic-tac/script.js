@@ -49,7 +49,7 @@ function getLinearSide(){
 						field.clientWidth :
 						minHeight;
 
-	return (linearSide  / side) - 5;
+	return ((linearSide - 100) / side);
 }
 
 /*
@@ -85,11 +85,9 @@ function tableHandler(){
 }
 
 function cleanField(){
-	let cells = getCellsFromTable(TABLE);
-
-	for (var i = cells.length - 1; i >= 0; i--) {
-		cells[i].className = "";
-	}
+	doCellsFromTable((cell) => {
+		cell.className = "";
+	})
 }
 
 function startHandler(event){
@@ -101,16 +99,22 @@ function startHandler(event){
 	initGame(side);
 }
 
-function getCellsFromTable(tableGet){
+function doCellsFromTable(callback, tableGet){
 	let table = tableGet || TABLE;
 	let result = [];
+
 	for (var row = table.rows.length - 1; row >= 0; row--) {
 		for (var cell = table.rows[row].cells.length - 1; cell >= 0; cell--) {
-			result.push(table.rows[row].cells[cell]);
+			let cellTouched = table.rows[row].cells[cell];
+			result.push(cellTouched);
+			callback(cellTouched);
 		}
 	}
+
 	return result;
 }
+// While studying design patterns, I discovered carring - let's apply
+var getCellsFromTable = doCellsFromTable.bind(null, (cell)=>{});
 
 /*
 function that write messages in log's window
