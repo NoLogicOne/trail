@@ -13,6 +13,10 @@ var winLine = 0;
 var currentClass  = "cross";
 var currentPlayer = player1;
 
+// These are binding variation of functions
+var getCellsFromTable = doCellsFromTable.bind(null, (cell)=>{});
+var cleanField = doCellsFromTable.bind(null, (cell) => {cell.className = ""});
+ 
 // In theis block, only the attachment of different handlers will be executed
 TABLE.addEventListener("click", tableHandler());
 REFRESH.addEventListener("click", cleanField);
@@ -84,12 +88,6 @@ function tableHandler(){
 	}
 }
 
-function cleanField(){
-	doCellsFromTable((cell) => {
-		cell.className = "";
-	})
-}
-
 function startHandler(event){
 	event.preventDefault();
 	player1 = document.getElementById("player1").value;
@@ -99,22 +97,22 @@ function startHandler(event){
 	initGame(side);
 }
 
-function doCellsFromTable(callback, tableGet){
-	let table = tableGet || TABLE;
+function doCellsFromTable(callback){
+	let table = TABLE;
 	let result = [];
 
-	for (var row = table.rows.length - 1; row >= 0; row--) {
-		for (var cell = table.rows[row].cells.length - 1; cell >= 0; cell--) {
+	for (var row = 0; row < table.rows.length; row++) {
+		for (var cell =  0; cell < table.rows[row].cells.length; cell++) {
 			let cellTouched = table.rows[row].cells[cell];
-			result.push(cellTouched);
 			callback(cellTouched);
+			result.push(cellTouched);
 		}
 	}
 
 	return result;
 }
 // While studying design patterns, I discovered carring - let's apply
-var getCellsFromTable = doCellsFromTable.bind(null, (cell)=>{});
+
 
 /*
 function that write messages in log's window
