@@ -14,7 +14,7 @@ var currentClass  = "cross";
 var currentPlayer = player1;
 
 // These are binding variation of functions
-var getCellsFromTable = doCellsFromTable.bind(null, (cell)=>{});
+var getCellsFromTable = doCellsFromTable.bind(null, (cell)=>{return cell});
 var cleanField = doCellsFromTable.bind(null, (cell) => {cell.className = ""});
  
 // In theis block, only the attachment of different handlers will be executed
@@ -104,14 +104,16 @@ function doCellsFromTable(callback){
 	for (var row = 0; row < table.rows.length; row++) {
 		for (var cell =  0; cell < table.rows[row].cells.length; cell++) {
 			let cellTouched = table.rows[row].cells[cell];
-			callback(cellTouched);
-			result.push(cellTouched);
+			result.push(callback(cellTouched));
 		}
 	}
 
 	return result;
 }
 // While studying design patterns, I discovered carring - let's apply
+
+// The first decorator I need is a value return decorator after processing
+
 
 
 /*
