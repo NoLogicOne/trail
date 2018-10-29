@@ -110,19 +110,41 @@ function getStep(direction){
 	switch (direction){
 		case 'down':
 			return Number(side);
-			break;
 		case 'right-down':
 			return Number(side) + 1;
-			break;
 		case 'right-up':
 			return -Number(side) + 1;
-			break;
 		case 'right':
 			return 1;
-			break;
 	}
 }
 
+function getRow(cell){
+	return ((cell - cell % side) / side); 
+}
+function getColumn(cell){
+	return (cell % side);
+} 
+function getNextCell(index, direction){
+	let next = index + getStep(direction);
+	
+	if(next >= side * side){
+		return;
+	}
+	if(next < 0){
+		return;
+	}
+
+	if (getColumn(index) == (side - 1)) {
+		if((direction == "right-down") || 
+			(direction == "right-up") || 
+			(direction == "right")) {
+			return null;
+		}
+	} 
+
+	return next; 
+}
 
 /*
 function that write messages in log's window
