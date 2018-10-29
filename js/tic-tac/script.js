@@ -60,22 +60,20 @@ function getLinearSide(){
 Function, returns a handler function for table cells
 
 */
-
-function tableHandler(){
-	var currentClass = "cross";
-
-	function toggleCurrent(){
-		if(currentClass == "cross") {
-			currentClass  = "zero";
-			currentPlayer = player2;
-		} else {
-			currentClass  = "cross";
-			currentPlayer = player1;
-		}
-
-		log("now it's a " + currentPlayer + " turn");
+function toggleCurrent(){
+	if(currentClass == "cross") {
+		currentClass  = "zero";
+		currentPlayer = player2;
+	} else {
+		currentClass  = "cross";
+		currentPlayer = player1;
 	}
 
+	log("now it's a " + currentPlayer + " turn");
+}
+
+function tableHandler(){
+	
 	return function(event){
 		if (event.target.nodeName == "TD") {
 			event.stopPropagation();
