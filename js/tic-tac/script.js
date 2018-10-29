@@ -1,7 +1,6 @@
 // It's a block 0f constants
 const TABLE    = document.getElementById("table");
 const REFRESH  = document.getElementById("refresh");
-const LOG      = document.getElementById("log");
 
 // These are custom variables
 var player1 = "Player1";
@@ -20,7 +19,6 @@ var cleanField = doCellsFromTable.bind(null, (cell) => {cell.className = ""});
 // In theis block, only the attachment of different handlers will be executed
 TABLE.addEventListener("click", tableHandler);
 REFRESH.addEventListener("click", cleanField);
-document.getElementById("clear_log").addEventListener("click", clearLog);
 document.getElementById("start-game").addEventListener("click", startHandler);
 document.getElementById("setup-form").addEventListener("submit", startHandler);
 
@@ -118,7 +116,6 @@ function getStep(direction){
 			return 1;
 	}
 }
-
 function getRow(cell){
 	return ((cell - cell % side) / side); 
 }
@@ -129,10 +126,10 @@ function getNextCell(index, direction){
 	let next = index + getStep(direction);
 	
 	if(next >= side * side){
-		return;
+		return null;
 	}
 	if(next < 0){
-		return;
+		return null;
 	}
 
 	if (getColumn(index) == (side - 1)) {
@@ -146,19 +143,4 @@ function getNextCell(index, direction){
 	return next; 
 }
 
-/*
-function that write messages in log's window
-@str - message for a log
-@status - success, warning or error
-          success is default value 
-*/
-function log(str, status) {
-	let stat = status || "success";
-	let res = "<div class='message " + stat + "'>" + str + "</div>";
-	LOG.innerHTML = res + LOG.innerHTML;
-}
-
-function clearLog(){
-	LOG.innerHTML = "";
-}
 
