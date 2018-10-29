@@ -18,7 +18,7 @@ var getCellsFromTable = doCellsFromTable.bind(null, (cell)=>{return cell});
 var cleanField = doCellsFromTable.bind(null, (cell) => {cell.className = ""});
  
 // In theis block, only the attachment of different handlers will be executed
-TABLE.addEventListener("click", tableHandler());
+TABLE.addEventListener("click", tableHandler);
 REFRESH.addEventListener("click", cleanField);
 document.getElementById("clear_log").addEventListener("click", clearLog);
 document.getElementById("start-game").addEventListener("click", startHandler);
@@ -57,8 +57,7 @@ function getLinearSide(){
 }
 
 /*
-Function, returns a handler function for table cells
-
+A handler function for table cells
 */
 function toggleCurrent(){
 	if(currentClass == "cross") {
@@ -72,17 +71,14 @@ function toggleCurrent(){
 	log("now it's a " + currentPlayer + " turn");
 }
 
-function tableHandler(){
-	
-	return function(event){
-		if (event.target.nodeName == "TD") {
-			event.stopPropagation();
-			if (event.target.className != "") {
-				return;
-			}
-			event.target.className = currentClass;
-			toggleCurrent();
+function tableHandler(event){
+	if (event.target.nodeName == "TD") {
+		event.stopPropagation();
+		if (event.target.className != "") {
+			return;
 		}
+		event.target.className = currentClass;
+		toggleCurrent();
 	}
 }
 
@@ -110,8 +106,22 @@ function doCellsFromTable(callback){
 }
 // While studying design patterns, I discovered carring - let's apply
 
-// The first decorator I need is a value return decorator after processing
-
+function getStep(direction){
+	switch (direction){
+		case 'down':
+			return Number(side);
+			break;
+		case 'right-down':
+			return Number(side) + 1;
+			break;
+		case 'right-up':
+			return -Number(side) + 1;
+			break;
+		case 'right':
+			return 1;
+			break;
+	}
+}
 
 
 /*
