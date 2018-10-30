@@ -13,7 +13,7 @@ var currentClass  = "cross";
 var currentPlayer = player1;
 
 // These are binding variation of functions
-var getCellsFromTable = doCellsFromTable.bind(null, (cell)=>{return cell});
+var getCellsFromTable = doCellsFromTable.bind(null, (cell) => {return cell});
 var cleanField = doCellsFromTable.bind(null, (cell) => {cell.className = ""});
  
 // In theis block, only the attachment of different handlers will be executed
@@ -21,22 +21,23 @@ TABLE.addEventListener("click", tableHandler);
 REFRESH.addEventListener("click", cleanField);
 document.getElementById("start-game").addEventListener("click", startHandler);
 document.getElementById("setup-form").addEventListener("submit", startHandler);
-
+	
 // function that creates a playing field
-function initGame(side){
+// Experiment with decorator checks
+var initGame = typeCheck((side) => {
 	let field = "<td></td>".repeat(side);
 	field = ("<tr>" + field + "</tr>").repeat(side);
 	TABLE.innerHTML = field;
 	resizeGame();
 	log("Firs move will make " + currentPlayer);
-}
+}, [checkNumber]);
 
 function resizeGame(){
 	let linearSide = getLinearSide();
 	let cells      = getCellsFromTable();
 	
 	for (var i = cells.length - 1; i >= 0; i--) {
-		cells[i].style.width   = linearSide + "px"; 
+		cells[i].style.width  = linearSide + "px"; 
 		if(i==0) console.log(cells[i].style.with);
 		cells[i].style.height = linearSide + "px";
 	}
@@ -142,5 +143,3 @@ function getNextCell(index, direction){
 
 	return next; 
 }
-
-
