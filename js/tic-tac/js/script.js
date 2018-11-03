@@ -16,6 +16,7 @@ var currentPlayer = player1;
 // These are binding variation of functions
 var getCellsFromTable = doCellsFromTable.bind(null, (cell) => {return cell});
 var getCell = doCell.bind(null, (cell) => {return cell});
+var getClass = doCell.bind(null, (cell) => {return cell.className});
 var cleanField = doCellsFromTable.bind(null, (cell) => {cell.className = ""});
  
 // In theis block, only the attachment of different handlers will be executed
