@@ -34,6 +34,7 @@ var initGame = typeCheck((side) => {
 	resizeGame();
 	log("Firs move will make " + currentPlayer);
 }, [checkNumber]);
+initGame(10);
 
 function resizeGame(){
 	let linearSide = getLinearSide();
@@ -151,4 +152,4 @@ function getNextCell(index, direction){
 	} 
 
 	return next; 
-}
+} 
