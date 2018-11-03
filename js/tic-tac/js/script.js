@@ -1,6 +1,7 @@
 // It's a block 0f constants
-const TABLE    = document.getElementById("table");
-const REFRESH  = document.getElementById("refresh");
+const TABLE      = document.getElementById("table");
+const REFRESH    = document.getElementById("refresh");
+const DIRECTIONS = ['down', 'right-down', 'right', 'right-up']; 
 
 // These are custom variables
 var player1 = "Player1";
@@ -14,6 +15,7 @@ var currentPlayer = player1;
 
 // These are binding variation of functions
 var getCellsFromTable = doCellsFromTable.bind(null, (cell) => {return cell});
+var getCell = doCell.bind(null, (cell) => {return cell});
 var cleanField = doCellsFromTable.bind(null, (cell) => {cell.className = ""});
  
 // In theis block, only the attachment of different handlers will be executed
@@ -88,6 +90,12 @@ function startHandler(event){
 	side    = document.getElementById("side").value;
 	winLine = document.getElementById("line-for-win").value;
 	initGame(side);
+}
+
+function doCell(callback, index){
+	return callback(
+			TABLE.rows[getRow(index)].cells[getColumn(index)]
+		);
 }
 
 function doCellsFromTable(callback){
