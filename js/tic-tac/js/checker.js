@@ -1,5 +1,5 @@
 function checkNumber(value) {
-  return typeof value == 'number';
+  return typeof +value == 'number';
 }
 function checkArray(value) {
   return typeof value == 'array';
@@ -11,7 +11,7 @@ function checkObject(value) {
   return typeof value == 'object';
 }
 function typeCheck(f, checks) {
-  return function() {
+  return function() { 
     for (var i = 0; i < arguments.length; i++) {
       if (!checks[i](arguments[i])) {
         log( "Некорректный тип аргумента номер " + i, 'error');
