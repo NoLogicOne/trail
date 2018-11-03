@@ -4,17 +4,18 @@ var player2 = "Player2";
 var side    = 10;
 var winLine = 5;
 
+// These are binding variation of functions
+var getCellsFromTable = doCellsFromTable.bind(null, (cell) => {return cell});
+var getCell = doCell.bind(null, (cell) => {return cell});
+var getClass = doCell.bind(null, (cell) => {return cell.className});
+var cleanField = doCellsFromTable.bind(doCellsFromTable, (cell) => {cell.className = ""});
+
 // In theis block, only the attachment of different handlers will be executed
 TABLE.addEventListener("click", tableHandler);
 REFRESH.addEventListener("click", cleanField);
 document.getElementById("start-game").addEventListener("click", startHandler);
 document.getElementById("setup-form").addEventListener("submit", startHandler);
 
-// These are binding variation of functions
-var getCellsFromTable = doCellsFromTable.bind(null, (cell) => {return cell});
-var getCell = doCell.bind(null, (cell) => {return cell});
-var getClass = doCell.bind(null, (cell) => {return cell.className});
-var cleanField = doCellsFromTable.bind(null, (cell) => {cell.className = ""});
 
 var initGame = typeCheck((side) => {
 	let field = "<td></td>".repeat(side);
