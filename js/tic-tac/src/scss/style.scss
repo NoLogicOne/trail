@@ -1,0 +1,84 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+#start-game{
+	width: 100%;
+	vertical-align: top;
+	height: 40px;
+}
+header{
+	min-height: 55px;
+	padding: 0 20px;
+	form{
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		.block{
+			padding: 10px 0;
+		}
+		input[type="submit"]{
+			display: none;
+		}
+		input{
+			display: block;
+			width: 90%;
+		}
+		label{
+			position: relative;
+		}
+	}
+} 
+table{
+	display: inline-block;
+	margin-top: 0;
+	border-spacing: 0;
+	td{
+		border: 1px solid rgba(0, 0, 0, .3);
+		display: inline-block;
+		width: 35px;
+		height: 35px;
+		cursor: pointer;
+	}
+}
+#play-container{
+	display: grid;
+	grid-template-columns: 7fr 3fr;
+}
+#playground{
+	margin-top: 0;
+	text-align: center;
+}
+#log_ground{
+	width: 30vw;
+	height: 100vh;
+	border: 2px solid rgba(100, 100, 255, 1);
+}
+#clear_log{
+	cursor: pointer;
+	width: 100%;
+	padding: 10px;
+}
+/*It's easy to create tic and tac on pure css, but seems to use too many browser resources*/
+.zero{
+	background-color: red;
+}
+.cross{
+	background-color: green;
+}
+#log {
+	height: calc(100vh - 39px);
+	overflow-y: auto;
+	.message{
+		margin: 2px 0;
+		padding: 3px;
+	}
+	.warning{
+		background-color: yellow; 
+	}
+	.success{
+		background-color: rgba(100, 255, 100, .4); 
+	}
+	.error{
+		background-color: rgba(255, 100, 100, .4); 
+	}
+} 

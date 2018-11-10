@@ -1,3 +1,29 @@
+import "../scss/style.scss";
+ 
+import {Logger} from './modules/logger.js';
+import {Consts} from "./modules/constants.js";
+import {typeCheck} from "./modules/checker.js";
+
+Logger.log("fuck");
+// These are game's variables
+var currentClass  = "cross";
+var currentPlayer = player1;
+
+/*
+A handler function for table cells
+*/
+function toggleCurrent(){
+	if(currentClass == "cross") {
+		currentClass  = "zero";
+		currentPlayer = player2;
+	} else {
+		currentClass  = "cross";
+		currentPlayer = player1;
+	}
+
+	Logger.log("now it's a " + currentPlayer + " turn");
+}
+
 // These are custom variables
 var player1 = "Player1";
 var player2 = "Player2";
@@ -11,8 +37,8 @@ var getClass = doCell.bind(null, (cell) => {return cell.className});
 var cleanField = doCellsFromTable.bind(doCellsFromTable, (cell) => {cell.className = ""});
 
 // In theis block, only the attachment of different handlers will be executed
-TABLE.addEventListener("click", tableHandler);
-REFRESH.addEventListener("click", cleanField);
+Consts.TABLE.addEventListener("click", tableHandler);
+Consts.REFRESH.addEventListener("click", cleanField);
 document.getElementById("start-game").addEventListener("click", startHandler);
 document.getElementById("setup-form").addEventListener("submit", startHandler);
 
@@ -20,10 +46,10 @@ document.getElementById("setup-form").addEventListener("submit", startHandler);
 var initGame = typeCheck((side) => {
 	let field = "<td></td>".repeat(side);
 	field = ("<tr>" + field + "</tr>").repeat(side);
-	TABLE.innerHTML = field;
+	Consts.TABLE.innerHTML = field;
 	resizeGame();
-	// log("Firs move will make " + currentPlayer);
-}, [checkNumber]);
+	Logger.log("Firs move will make " + currentPlayer);
+}, ["checkNumber"]);
 
 function resizeGame(){
 	let linearSide = getLinearSide();
@@ -39,7 +65,7 @@ function resizeGame(){
 function getLinearSide(){
 	let field  = document.getElementById("playground");
 	let header = document.getElementById("header");
-	let minHeight = field.clientHeight - REFRESH.clientHeight - header.clientHeight;
+	let minHeight = field.clientHeight - Consts.REFRESH.clientHeight - header.clientHeight;
 
 	let linearSide = (field.clientWidth < minHeight) ? 
 						field.clientWidth :
@@ -70,12 +96,12 @@ function startHandler(event){
 
 function doCell(callback, index){
 	return callback(
-			TABLE.rows[getRow(index)].cells[getColumn(index)]
+			Consts.TABLE.rows[getRow(index)].cells[getColumn(index)]
 		);
 }
 
 function doCellsFromTable(callback){
-	let table = TABLE;
+	let table = Consts.TABLE;
 	let result = [];
 
 	for (var row = 0; row < table.rows.length; row++) {

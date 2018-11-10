@@ -1,0 +1,32 @@
+{
+  "name": "tic-tac",
+  "version": "1.0.0",
+  "description": "project from github",
+  "main": "script.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoLogicOne/trail.git"
+  },
+  "author": "Relax",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NoLogicOne/trail/issues"
+  },
+  "homepage": "https://github.com/NoLogicOne/trail#readme",
+  "devDependencies": {
+    "css-loader": "^1.0.1",
+    "file-loader": "^2.0.0",
+    "html-loader": "^0.5.5",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
+  }
+}

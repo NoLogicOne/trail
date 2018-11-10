@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- <link rel="stylesheet" href="./style.css"> -->
+	<title>tic-tac</title>
+</head>
+<body>
+	<header id="header">
+		<button id="start-game">Start Game!</button>
+		<form action="#" id="setup-form">
+			<div class="block">
+				<label for="#player1">Player1 (X)</label>
+				<input type="text" id="player1" value="Player1">
+			</div>
+			<div class="block">
+				<label for="#player2">Player2 (O)</label>
+				<input type="text" id="player2" value="Player2">
+			</div>
+			<div class="block">
+				<label for="#side">side of playground</label>
+				<input type="number" id="side" value="10">
+			</div>
+			<div class="block">
+				<label for="#side">line for win</label>
+				<input type="number" id="line-for-win" value="5">
+			</div>
+			<input type="submit" hidden>
+		</form>
+	</header>
+	<div id="play-container">
+		<div id="playground">
+			<table id="table"></table>
+			<div id="result"></div>
+			<button id="refresh">REFRESH</button>
+		</div>
+		<div id="log_ground">
+			<button id="clear_log">Clear Log</button>
+			<div id="log">
+				 
+			</div>
+		</div>
+	</div>
+	<!-- <script src="./polifill.js"></script> -->
+	<!-- <script src="./js/logger.js"></script> -->
+	<!-- <script src="./dist/main.js"></script> -->
+	<!-- <script src="./js/checker.js"></script> -->
+	<!-- <script src="./js/constants.js"></script> -->
+	<!-- <script src="./js/TableManager.js"></script> -->
+	<!-- <script src="./js/ChainManager.js"></script> -->
+	<!-- <script src="./js/script.js"></script> -->
+<script type="text/javascript" src="main.js"></script></body>
+</html>
