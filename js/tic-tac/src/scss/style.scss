@@ -12,9 +12,12 @@ header{
 	padding: 0 20px;
 	form{
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: 3fr 1fr 3fr 1fr 3fr 3fr;
 		.block{
 			padding: 10px 0;
+		}
+		input[type="color"]{
+			margin: 0 15px 0 0;
 		}
 		input[type="submit"]{
 			display: none;
