@@ -3,46 +3,26 @@ import "../scss/style.scss";
 import {Logger}    from './modules/logger.js';
 import {Consts}    from "./modules/constants.js";
 import {typeCheck} from "./modules/checker.js";
-import {Gamer}     from "./modules/Gamer.js";
-import {Table}     from "./modules/Tabler.js";
+// import {Table}     from "./modules/Tabler.js";
+import {Game}      from "./modules/Game.js";
 
-var player1 = "Player1";
-var player2 = "Player2";
-var side    = 10;
-var winLine = 5;
-
-// These are game's variables
-var currentClass  = "cross";
-var currentPlayer = player1;
- 
-/*
-A handler function for table cells
-*/
-
-
-// These are binding variation of functions
-
-
-// In theis block, only the attachment of different handlers will be executed
-
+var G = new Game(); 
 
 document.getElementById("start-game").addEventListener("click", startHandler);
 document.getElementById("setup-form").addEventListener("submit", startHandler);
 
 
-var initGame = typeCheck((side) => {
-	(new Table(side)).init();
-	toggleCurrent();
-	Logger.log("Firs move will make " + currentPlayer);
-}, ["checkNumber"]);
+// var initGame = typeCheck((side) => {
+// 	(new Table(side)).init();
+// 	toggleCurrent();
+// 	Logger.log("Firs move will make " + currentPlayer);
+// }, ["checkNumber"]);
 
 function startHandler(event){
 	event.preventDefault();
-	player1 = document.getElementById("player1").value;
-	player2 = document.getElementById("player2").value;
-	side    = document.getElementById("side").value;
-	winLine = document.getElementById("line-for-win").value;
-	initGame(side);
+	
+	G.init();
+	// initGame(side);
 }
 
 

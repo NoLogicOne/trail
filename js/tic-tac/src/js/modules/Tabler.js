@@ -7,10 +7,10 @@ var Table = function(side){
 	var getClass = doCell.bind(null, (cell) => {return cell.className});
 	var cleanField = doCellsFromTable.bind(doCellsFromTable, (cell) => {cell.className = ""});
 	
+	initial();
+	
 	Consts.TABLE.addEventListener("click", tableHandler);
 	Consts.REFRESH.addEventListener("click", cleanField);
-
-	initial();
 
 	function resizeGame(){
 		let linearSide = getLinearSide();
