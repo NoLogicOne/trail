@@ -4,8 +4,9 @@ var Table = function(side){
 
 	var getCellsFromTable = doCellsFromTable.bind(null, (cell) => {return cell});
 	var getCell = doCell.bind(null, (cell) => {return cell});
-	var getClass = doCell.bind(null, (cell) => {return cell.className});
-	var cleanField = doCellsFromTable.bind(doCellsFromTable, (cell) => {cell.className = ""});
+	var getColor = doCell.bind(null, (cell) => {return cell.style.color});
+	var cleanField = doCellsFromTable.bind(doCellsFromTable, (cell) => {cell.style.backgroundColor = ""});
+	var brush = doCell.bind(null, (cell, color) => {cell.style.backgroundColor = color});
 	
 	initial();
 	
@@ -34,21 +35,31 @@ var Table = function(side){
 		return ((linearSide - 100) / side);
 	}
 
-	function tableHandler(event){
-		if (event.target.nodeName == "TD") {
+	function tableHandler(event, color){
+		let target = event.target;
+		
+		if (target.nodeName == "TD") {
 			event.stopPropagation();
-			if (event.target.className != "") {
+			if (target.className != "") {
 				return;
 			}
-			event.target.className = currentClass;
+			target.style.backgroundColor = "#00ff00";
 			toggleCurrent();
 		}
 	}
 
+	function brushCell(index, color){
+		getCell(index).style.backgroundColor = color;
+	}
+
 	function doCell(callback, index){
-		return callback(
-				Consts.TABLE.rows[getRow(index)].cells[getColumn(index)]
-			);
+		let cell;
+		
+		typeof index == "number" ? 
+			cell = Consts.TABLE.rows[getRow(index)].cells[getColumn(index)] :
+			cell = index;
+
+		return callback(cell);
 	}
 
 	function doCellsFromTable(callback){

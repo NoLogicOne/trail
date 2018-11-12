@@ -10,7 +10,7 @@ function Game(){
 
 	var currentIndex = 0;
 
-	initial.call(this);
+	initial();
 
 	function toggleCurrent(){
 		currentIndex++;
