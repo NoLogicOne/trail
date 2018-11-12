@@ -10,7 +10,6 @@ var Table = function(side){
 	
 	initial();
 	
-	Consts.TABLE.addEventListener("click", tableHandler);
 	Consts.REFRESH.addEventListener("click", cleanField);
 
 	function resizeGame(){
@@ -33,19 +32,6 @@ var Table = function(side){
 							minHeight;
 
 		return ((linearSide - 100) / side);
-	}
-
-	function tableHandler(event, color){
-		let target = event.target;
-		
-		if (target.nodeName == "TD") {
-			event.stopPropagation();
-			if (target.className != "") {
-				return;
-			}
-			target.style.backgroundColor = "#00ff00";
-			toggleCurrent();
-		}
 	}
 
 	function brushCell(index, color){
@@ -92,7 +78,8 @@ var Table = function(side){
 	}
 
 	return {
-		init: initial
+		init: initial,
+		brush: brushCell
 	}
 };
 

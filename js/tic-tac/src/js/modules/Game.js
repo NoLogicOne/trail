@@ -1,4 +1,5 @@
 import {Logger} from './logger.js';
+import {Consts} from './constants.js';
 import {Gamer}  from "./Gamer.js";
 import {Table}  from "./Tabler.js";
 
@@ -9,8 +10,9 @@ function Game(){
 		winLine = 5;
 
 	var currentIndex = 0;
+	var t = new Table(side);
 
-	initial();
+	Consts.TABLE.addEventListener("click", tableHandler);
 
 	function toggleCurrent(){
 		currentIndex++;
@@ -19,12 +21,34 @@ function Game(){
 		Logger.log("now it's a " + players[currentIndex].getName() + " turn");
 	}
 
+	function doMove(cell, indexGamer){
+		let index = indexGamer || currentIndex;
+		t.brush(cell, players[index].getColor());
+		toggleCurrent();
+	}
+
+	function tableHandler(event){
+		let target = event.target;
+		
+		if (target.nodeName == "TD") {
+			event.stopPropagation();
+	
+			if (target.style.backgroundColor != "") {
+				return;
+			}
+			
+			doMove(target);
+		}
+
+	}
+
 // My plan is reorganize this func later
 // checker gamers on existance soon
-	function initial(){
-		for(var key in players){
-			delete players[key];
-		}
+	function initial(isNew){
+
+		t = new Table(side);
+
+		players = [];
 
 		// console.log("players  - " + this.players.toString());
 
@@ -40,11 +64,11 @@ function Game(){
 		side    = document.getElementById("side").value || 10;
 		winLine = document.getElementById("line-for-win").value || 5;
 
-		new Table(side);
 	}
 
 	return {
-		init: initial
+		init: initial,
+		move: doMove
 	}
 };
 
