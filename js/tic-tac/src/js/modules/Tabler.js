@@ -4,13 +4,14 @@ var Table = function(side){
 
 	var getCellsFromTable = doCellsFromTable.bind(null, (cell) => {return cell});
 	var getCell = doCell.bind(null, (cell) => {return cell});
-	var getColor = doCell.bind(null, (cell) => {return cell.style.color});
+	var getColor = doCell.bind(null, (cell) => {return cell.style.backgroundColor});
 	var cleanField = doCellsFromTable.bind(doCellsFromTable, (cell) => {cell.style.backgroundColor = ""});
-	var brush = doCell.bind(null, (cell, color) => {cell.style.backgroundColor = color});
+	var getVirtualTable = doCellsFromTable.bind(null, (cell) => {return cell.style.backgroundColor});
 	
 	initial();
 	
 	Consts.REFRESH.addEventListener("click", cleanField);
+
 
 	function resizeGame(){
 		let linearSide = getLinearSide();
@@ -77,9 +78,44 @@ var Table = function(side){
 		resizeGame();
 	}
 
+	function getStep(direction){
+		switch (direction){
+			case 'down':
+				return Number(side);
+			case 'right-down':
+				return Number(side) + 1;
+			case 'right-up':
+				return -Number(side) + 1;
+			case 'right':
+				return 1;
+		}
+	}
+
+	function getNextCell(index, direction){
+		let next = index + getStep(direction);
+		
+		if(next >= side * side){
+			return null;
+		}
+		if(next < 0){
+			return null;
+		}
+
+		if (getColumn(index) == (side - 1)) {
+			if((direction == "right-down") || 
+				(direction == "right-up") || 
+				(direction == "right")) {
+				return null;
+			}
+		} 
+
+		return next; 
+	}
+
 	return {
 		init: initial,
-		brush: brushCell
+		brush: brushCell,
+		getVirtual: getVirtualTable
 	}
 };
 

@@ -36,7 +36,7 @@ function Game(){
 			if (target.style.backgroundColor != "") {
 				return;
 			}
-			
+
 			doMove(target);
 		}
 
