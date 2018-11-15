@@ -4,3 +4,5 @@ The goal of the tic tac toe project is to study design patterns
 A subspecies of decorators - carring - is used in functions getCellsFromTable, cleanField
 
 2) Singleton implements in hainManager object - now in development 
+
+Now I have started Mocha in this project - so, i have an expirience in th Unit-testing!
