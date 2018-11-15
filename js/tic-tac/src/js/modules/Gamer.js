@@ -2,8 +2,6 @@ var Gamer = function(name, color){
 	var name  = name,
 		color = color;
 
-
-
 	function getPlayerCells(virtualTable){
 		let result = [name];
 
@@ -39,4 +37,4 @@ var Gamer = function(name, color){
 	}
 };
 
-export {Gamer};
+module.exports = Gamer;

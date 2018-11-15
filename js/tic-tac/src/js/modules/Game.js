@@ -1,7 +1,7 @@
-import {Logger} from './logger.js';
-import {Consts} from './constants.js';
-import {Gamer}  from "./Gamer.js";
-import {Table}  from "./Tabler.js";
+var Logger = require('./logger.js');
+var Consts = require('./constants.js');
+var Gamer  = require("./Gamer.js");
+var Table  = require("./Tabler.js");
 
 function Game(){
 
@@ -39,18 +39,12 @@ function Game(){
 
 			doMove(target);
 		}
-
 	}
 
 // My plan is reorganize this func later
 // checker gamers on existance soon
 	function initial(isNew){
-
-		t = new Table(side);
-
 		players = [];
-
-		// console.log("players  - " + this.players.toString());
 
 		[].push.call(players, new Gamer(
 				document.getElementById("player1").value,
@@ -64,6 +58,7 @@ function Game(){
 		side    = document.getElementById("side").value || 10;
 		winLine = document.getElementById("line-for-win").value || 5;
 
+		t = new Table(side);
 	}
 
 	return {
@@ -72,4 +67,4 @@ function Game(){
 	}
 };
 
-export {Game};
+module.exports = Game;

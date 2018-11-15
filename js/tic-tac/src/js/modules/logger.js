@@ -4,7 +4,7 @@ var Logger = (function(){
 	document.getElementById("clear_log").addEventListener("click", clear);
 	
 	function clear(){
-		LOG.innerHTML = ""
+		LOG.innerHTML = "";
 	}
 
 	return {
@@ -17,7 +17,7 @@ var Logger = (function(){
 	}
 })();
 
-export {Logger};
+module.exports = Logger;
 /*
 function that write messages in log's window
 @str - message for a log

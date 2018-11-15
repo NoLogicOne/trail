@@ -1,7 +1,9 @@
-import {Consts} from "./constants.js";
+var Consts = require("./constants.js");
 
-var Table = function(side){
+var Table = function(newSide){
 
+	var side = newSide;
+	
 	var getCellsFromTable = doCellsFromTable.bind(null, (cell) => {return cell});
 	var getCell = doCell.bind(null, (cell) => {return cell});
 	var getColor = doCell.bind(null, (cell) => {return cell.style.backgroundColor});
@@ -119,4 +121,4 @@ var Table = function(side){
 	}
 };
 
-export {Table};
+module.exports = Table;

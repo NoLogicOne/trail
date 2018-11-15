@@ -6,4 +6,4 @@ var Consts = {
 
 Object.freeze(Consts);
 
-export {Consts};
+module.exports = Consts;
