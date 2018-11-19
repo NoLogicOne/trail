@@ -3,14 +3,27 @@ var Consts = require('./constants.js');
 var Gamer  = require("./Gamer.js");
 var Table  = require("./Tabler.js");
 
-function Game(){
+function Game(debugFlag){
 
 	var players = [new Gamer("Igor", "#ff0000"), new Gamer("Ivan", "#00ff00")];
 	var side    = 10,
 		winLine = 5;
 
 	var currentIndex = 0;
+
 	var t = new Table(side);
+
+/*Debug block*/
+	var debug = debugFlag || false;
+	if(debug) {
+		t = t.getVirtual();
+		var document = {
+			getElementById: function(){
+				return {};
+			}
+		};
+	}
+/*End Debug*/
 
 	Consts.TABLE.addEventListener("click", tableHandler);
 
@@ -46,11 +59,11 @@ function Game(){
 	function initial(isNew){
 		players = [];
 
-		[].push.call(players, new Gamer(
+		players.push(new Gamer(
 				document.getElementById("player1").value,
 				document.getElementById("color1").value,
 			));
-		[].push.call(players, new Gamer(
+		players.push(new Gamer(
 				document.getElementById("player2").value,
 				document.getElementById("color2").value,
 			));
@@ -58,7 +71,9 @@ function Game(){
 		side    = document.getElementById("side").value || 10;
 		winLine = document.getElementById("line-for-win").value || 5;
 
-		t = new Table(side);
+		if(!debug){
+			t = new Table(side);
+		}
 	}
 
 	return {

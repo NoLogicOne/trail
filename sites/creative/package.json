@@ -1,0 +1,31 @@
+{
+  "name": "sites-creative",
+  "version": "1.0.0",
+  "description": "project for trail",
+  "main": "script.js",
+  "scripts": {
+    "dev": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production --watch",
+    "test": "mocha src/**/*.test.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoLogicOne/trail.git"
+  },
+  "author": "Relax",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NoLogicOne/trail/issues"
+  },
+  "homepage": "https://github.com/NoLogicOne/trail#readme",
+  "devDependencies": {
+    "css-loader": "^1.0.1",
+    "mocha": "^5.2.0",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
+  }
+}
