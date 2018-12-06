@@ -1,0 +1,11 @@
+th{
+	padding: 5px 15px 5px 15px;
+	border: 1px solid grey;
+	cursor: pointer;
+}
+.table__header_down-sort:after{
+	content: "\2193";
+}
+.table__header_upper-sort:after{
+	content: "\2191";
+}

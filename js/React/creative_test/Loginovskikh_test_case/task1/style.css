@@ -1,0 +1,58 @@
+body{
+	background-image: -webkit-linear-gradient(left, #ad5389, #3c1053);
+	background-image: -o-linear-gradient(left, #ad5389, #3c1053);
+	background-image: linear-gradient(to right, #ad5389, #3c1053);
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+a:hover,
+a:focus{
+	cursor: pointer;
+}
+.modal_wrapper{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: flex;
+	background-color: rgba(0, 0, 0, .7);
+}
+.modal_window{
+	background-color: white;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	height: auto;
+	padding: 15px;
+	width: 50%;
+}
+.modal_header{
+	color: grey;	
+}
+.modal_header:after{
+	content: "";
+	display: block;
+	height: 0px;
+	width: 90%;
+	border: 1px solid grey;
+	margin-bottom: 15px;
+}
+.modal_content{
+	text-align: justify;
+}
+.modal_close{
+	position: relative;
+	font-size: 16px;
+	float: right;
+}
+#modal:target{
+	display: flex;
+	transition: all .4s;
+}
+#modal:not(:target){
+	display: none;
+	transition: all .3s;
+}
