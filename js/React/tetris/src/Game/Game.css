@@ -1,0 +1,7 @@
+#Game{
+	display: grid;
+	grid-area: game;
+	grid-template-columns: 75% 25%;
+	grid-template-areas:
+		"game-field game-info";
+}

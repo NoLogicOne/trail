@@ -1,0 +1,19 @@
+#App header{
+	grid-area: header;
+}
+#App header::after{
+	content:"";
+	display: block;
+	width: 90%;
+	height: 1px;
+	background-color: gray;
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+#App{
+	display: grid;
+	grid-template-areas:
+		"header header"
+		"top-panel top-panel"
+		"game game";
+}

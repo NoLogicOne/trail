@@ -1,0 +1,12 @@
+#GameField{
+	width: 100%;
+	height: 100%;
+	grid-area: game-field;
+	/*border: 1px solid gray;*/
+}
+#GameField td{
+	border: 1px solid transparent;
+}
+#GameField td.active{
+	border: 1px solid green;
+}

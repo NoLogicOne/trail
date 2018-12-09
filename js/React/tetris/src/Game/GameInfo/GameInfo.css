@@ -1,0 +1,9 @@
+#GameInfo{
+	grid-area: game-info;
+	height: 100%;
+	width: 100%;
+}
+
+#GameInfo td{
+	border: 1px solid blue;
+}
