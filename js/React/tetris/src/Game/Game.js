@@ -12,6 +12,8 @@ class Game extends Component {
     this.state = {
       matrix: this.__createCleanMatrix()
     }
+
+    this.newGame = this.newGame.bind(this);
   }
 
   newGame(){
@@ -45,7 +47,7 @@ class Game extends Component {
       this.setState({matrix: virtualMatrix});
 
     } catch{
-      throw new Error({message: "_setActive not in range matrix"});
+      throw new Error({message: "_setCell not in range matrix"});
     }
 
   }
@@ -60,6 +62,7 @@ class Game extends Component {
 
     this.setCell(row, cell, "1");
     this._checkRows();
+    this.gravity();
   }
 
   _checkRows(){
@@ -97,13 +100,44 @@ class Game extends Component {
   	this.setState({matrix: virtualMatrix});
   }
 
+  gravity(){
+  	let virtualMatrix = this.state.matrix;
 
+  	console.dir(virtualMatrix);
+// i need to use desc order again faster fall down
+  	let desc = virtualMatrix.reverse().map((item, row, vMatrix) => {
+  		if (row === 0) {
+  			return item;
+  		}
+
+  		for (var cell = 0; cell < item.length; cell++) {
+  			if ( (item[cell] === "1") 
+  			&& (vMatrix[row - 1][cell] === "0")
+  			&& ((row - 1) >= 0) ){
+	  			vMatrix[row - 1][cell] = "1";
+	  			item[cell] = "0"; 
+  			}
+  		}
+  		return item;
+  	});
+
+  	virtualMatrix = desc.reverse();
+
+
+  	this.setState({
+  		matrix: virtualMatrix
+  	})
+  }
+
+  componentDidMount() {
+    
+  }
 
   render() {
 
     return (
       <div id="Game">
-      	<TopPanel />
+      	<TopPanel new_game={this.newGame}/>
 	    <GameField size={this.props.size}
 	    		   rows={this.props.rows}
 	    		   matrix={this.state.matrix}

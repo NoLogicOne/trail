@@ -5,7 +5,8 @@ class TopPanel extends Component {
   render() {
     return (
       <div id="TopPanel">
-        <button>New Game</button>
+        <button onClick={this.props.new_game}
+        	>New Game</button>
         <button>Select Lvl</button>
       </div>
     );
