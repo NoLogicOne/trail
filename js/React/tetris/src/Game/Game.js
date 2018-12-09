@@ -61,8 +61,6 @@ class Game extends Component {
     let row  = e.target.parentNode.rowIndex;
 
     this.setCell(row, cell, "1");
-    this._checkRows();
-    this.gravity();
   }
 
   _checkRows(){
@@ -103,7 +101,6 @@ class Game extends Component {
   gravity(){
   	let virtualMatrix = this.state.matrix;
 
-  	console.dir(virtualMatrix);
 // i need to use desc order again faster fall down
   	let desc = virtualMatrix.reverse().map((item, row, vMatrix) => {
   		if (row === 0) {
@@ -123,14 +120,21 @@ class Game extends Component {
 
   	virtualMatrix = desc.reverse();
 
-
   	this.setState({
   		matrix: virtualMatrix
   	})
+
+  	this._checkRows();
   }
 
   componentDidMount() {
-    
+  	this.speed = setInterval(() => {
+  	  this.gravity();
+  	}, 1000);  
+  }
+
+  componentWillUnmount(){
+  	clearInterval(this.speed);
   }
 
   render() {

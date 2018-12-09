@@ -12,9 +12,14 @@ class GameField extends Component {
   		for(let cell = 0; cell < this.props.size; cell++){
   			let key = String(row) + "-" + String(cell);
 
-  			let active = this.props.matrix[row][cell] === "1" 
-  							? "active"
-  							: "";
+  			let value = this.props.matrix[row][cell];
+  			let active = value === "1"
+  				  ? "passive"
+  				  : "active";
+
+  			if(value === "0"){
+  				active = "";
+  			}
   			
   			expr.push(<td 
   				key={key}

@@ -11,3 +11,6 @@
 #GameField td.active{
 	border: 1px solid green;
 }
+#GameField td.passive{
+	border: 1px solid black;
+}
