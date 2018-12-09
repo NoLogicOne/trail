@@ -3,5 +3,6 @@
 	grid-area: game;
 	grid-template-columns: 75% 25%;
 	grid-template-areas:
+		"top-panel ."
 		"game-field game-info";
 }

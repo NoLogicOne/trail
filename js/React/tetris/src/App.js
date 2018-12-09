@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import TopPanel from "./TopPanel/TopPanel.js";
 import Game from "./Game/Game.js";
 
 const CONFIG = {
@@ -10,6 +9,7 @@ const CONFIG = {
 }
 
 class App extends Component {
+  
 
   render() {
     return (
@@ -17,7 +17,7 @@ class App extends Component {
         <header className="App-header">
           <h1>TETRIS</h1>
         </header>
-        <TopPanel />
+        
         <Game size={CONFIG.size}
               rows={CONFIG.rows}
               handleClick={this.handleClick}
