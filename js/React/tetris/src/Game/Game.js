@@ -102,18 +102,20 @@ class Game extends Component {
   	let virtualMatrix = this.state.matrix;
   	// let flag = false;
 
-  	let isCellBellowActives = virtualMatrix.reduce((res, row, vMatrix, rowIndex) => {
-  		let rowResult = row.reduce((result, cell) => {
+  	let isCellBellowActives = virtualMatrix.reduce((res, row, rowIndex, vMatrix) => {
+  		let rowResult = row.reduce((result, cell, cellIndex) => {
   			if(cell !== "-1"){
   				return result;
   			}
   			if(!result){
   				return result;
   			}
-  			if(rowIndex === this.props.rows){
-  				return result;
+  			if(rowIndex === (this.props.rows - 1)){
+  				return false;
   			}
-  			return vMatrix[rowIndex + 1] === "0";
+  	
+  			return vMatrix[rowIndex + 1][cellIndex] === "0"
+  					|| vMatrix[rowIndex + 1][cellIndex] === "-1";
   		}, true);	
 
   		return res && rowResult;
