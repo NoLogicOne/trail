@@ -60,7 +60,7 @@ class Game extends Component {
     let cell = e.target.cellIndex;
     let row  = e.target.parentNode.rowIndex;
 
-    this.setCell(row, cell, "1");
+    this.setCell(row, cell, "-1");
   }
 
   _checkRows(){
@@ -100,31 +100,86 @@ class Game extends Component {
 
   gravity(){
   	let virtualMatrix = this.state.matrix;
+  	// let flag = false;
+
+  	let isCellBellowActives = virtualMatrix.reduce((res, row, vMatrix, rowIndex) => {
+  		let rowResult = row.reduce((result, cell) => {
+  			if(cell !== "-1"){
+  				return result;
+  			}
+  			if(!result){
+  				return result;
+  			}
+  			if(rowIndex === this.props.rows){
+  				return result;
+  			}
+  			return vMatrix[rowIndex + 1] === "0";
+  		}, true);	
+
+  		return res && rowResult;
+  	}, true);
 
 // i need to use desc order again faster fall down
-  	let desc = virtualMatrix.reverse().map((item, row, vMatrix) => {
-  		if (row === 0) {
-  			return item;
-  		}
+  	if(!isCellBellowActives){
+  		virtualMatrix = this.convertAllToPassive(virtualMatrix);
+  	} else {
 
-  		for (var cell = 0; cell < item.length; cell++) {
-  			if ( (item[cell] === "1") 
-  			&& (vMatrix[row - 1][cell] === "0")
-  			&& ((row - 1) >= 0) ){
-	  			vMatrix[row - 1][cell] = "1";
-	  			item[cell] = "0"; 
-  			}
-  		}
-  		return item;
-  	});
+  		let desc = virtualMatrix
+  				.reverse()
+  				.map((item, row, vMatrix) => {
+			  		if (row === 0) {
+			  			return item;
+			  		}
 
-  	virtualMatrix = desc.reverse();
+			  		for (let cell = 0; cell < item.length; cell++) {
+			  			let isActive     = item[cell] === "-1",
+			  			    isCellBellow = vMatrix[row - 1][cell] === "0";
+
+			  			if(isActive){
+				  			console.log("cell   - " + isCellBellow);
+			  			}
+			  			
+			  			
+			  			if ( isActive ){
+				  			vMatrix[row - 1][cell] = "-1";
+				  			item[cell] = "0";
+			  			}
+			  		}
+
+			  		return item;
+			  	});
+
+  		virtualMatrix = desc.reverse();
+  	}
+
+
 
   	this.setState({
   		matrix: virtualMatrix
   	})
 
   	this._checkRows();
+  }
+
+  convertAllToPassive(vMatrix){
+  	let virtualMatrix = vMatrix || this.state.matrix;  
+
+  	virtualMatrix = virtualMatrix.map((row) => {
+  		return row.map((cell) => {
+  			return cell === "-1"
+  				? "1"
+  				: cell;
+  		});
+  	});
+
+  	if(vMatrix !== undefined){
+  		return virtualMatrix;
+  	}
+
+  	this.setState({
+  		matrix: virtualMatrix
+  	})
+
   }
 
   componentDidMount() {

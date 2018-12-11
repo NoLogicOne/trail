@@ -1,8 +1,9 @@
 #Game{
 	display: grid;
 	grid-area: game;
-	grid-template-columns: 75% 25%;
+	grid-template-columns: 250px 50px;
+	grid-template-rows: 40px 400px;
 	grid-template-areas:
-		"top-panel ."
+		"top-panel top-panel"
 		"game-field game-info";
 }

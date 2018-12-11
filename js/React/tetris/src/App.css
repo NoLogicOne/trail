@@ -11,9 +11,10 @@
 	margin-left: 10px;
 }
 #App{
+	user-select: none;
 	display: grid;
+	grid-template-columns: 1fr 300px 1fr;
 	grid-template-areas:
-		"header header"
-		"top-panel top-panel"
-		"game game";
+		"header header header"
+		". game .";
 }

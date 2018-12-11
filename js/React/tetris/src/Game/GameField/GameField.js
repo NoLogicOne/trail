@@ -23,7 +23,7 @@ class GameField extends Component {
   			
   			expr.push(<td 
   				key={key}
-  				className={active}>{key}
+  				className={active}>
   			</td>);
   		}
   		

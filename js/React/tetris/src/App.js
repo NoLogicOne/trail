@@ -4,8 +4,8 @@ import './App.css';
 import Game from "./Game/Game.js";
 
 const CONFIG = {
-  size: 10,
-  rows: 7
+  size: 15,
+  rows: 50
 }
 
 class App extends Component {
