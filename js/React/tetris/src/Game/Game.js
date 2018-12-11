@@ -81,18 +81,23 @@ class Game extends Component {
 
   _cleanRow(row){
   	let virtualMatrix = this.state.matrix;
+  	let cleanRow = [];
 
-  	let newRow = virtualMatrix[row].map(() => {
-  		return "0";
-  	});
+  	for (var i1 = 0; i1 < this.props.size; i1++) {
+       	cleanRow.push("0");
+    }
 
 // if row is not defined, this clean all field
   	if(!row) {
   		for(let i = 0; i < virtualMatrix.length; i++){
-  			virtualMatrix[i] = newRow;
+  			virtualMatrix[i] = cleanRow;
   		}
   	} else {
-	  	virtualMatrix[row] = newRow;
+	  	virtualMatrix.splice(row, 1);
+	  	
+	  	virtualMatrix.reverse();
+	  	virtualMatrix.push(cleanRow);
+	  	virtualMatrix.reverse();
   	}
 
   	this.setState({matrix: virtualMatrix});
@@ -100,7 +105,6 @@ class Game extends Component {
 
   gravity(){
   	let virtualMatrix = this.state.matrix;
-  	// let flag = false;
 
   	let isCellBellowActives = virtualMatrix.reduce((res, row, rowIndex, vMatrix) => {
   		let rowResult = row.reduce((result, cell, cellIndex) => {
@@ -134,14 +138,8 @@ class Game extends Component {
 			  		}
 
 			  		for (let cell = 0; cell < item.length; cell++) {
-			  			let isActive     = item[cell] === "-1",
-			  			    isCellBellow = vMatrix[row - 1][cell] === "0";
-
-			  			if(isActive){
-				  			console.log("cell   - " + isCellBellow);
-			  			}
-			  			
-			  			
+			  			let isActive = item[cell] === "-1";
+			  		
 			  			if ( isActive ){
 				  			vMatrix[row - 1][cell] = "-1";
 				  			item[cell] = "0";
@@ -159,8 +157,6 @@ class Game extends Component {
   	this.setState({
   		matrix: virtualMatrix
   	})
-
-  	this._checkRows();
   }
 
   convertAllToPassive(vMatrix){
@@ -187,6 +183,7 @@ class Game extends Component {
   componentDidMount() {
   	this.speed = setInterval(() => {
   	  this.gravity();
+  	  this._checkRows();
   	}, 1000);  
   }
 
