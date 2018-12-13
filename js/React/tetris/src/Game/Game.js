@@ -14,6 +14,7 @@ class Game extends Component {
     }
 
     this.newGame = this.newGame.bind(this);
+    this.onKeyUp = this.onKeyUp.bind(this);
   }
 
   newGame(){
@@ -152,8 +153,6 @@ class Game extends Component {
   		virtualMatrix = desc.reverse();
   	}
 
-
-
   	this.setState({
   		matrix: virtualMatrix
   	})
@@ -180,11 +179,36 @@ class Game extends Component {
 
   }
 
+  onKeyUp(event){
+  	event.preventDefault();
+  	let virtualMatrix = this.state.matrix;
+
+  	let isCellLeftActives = virtualMatrix.reduce((res, row, rowIndex, vMatrix) => {
+	  	let rowResult = row.reduce((result, cell, cellIndex) => {
+			if ((cell !== "-1") || (!result)){
+				return result;
+			}
+			if(cellIndex === 0){
+				return false;
+			}
+
+			return vMatrix[rowIndex][cellIndex - 1] === "0"
+					|| vMatrix[rowIndex][cellIndex - 1] === "-1";
+		}, true);	
+
+  		return res && rowResult;
+  	}, true);
+
+  	console.log(isCellLeftActives);
+
+  }
+
   componentDidMount() {
   	this.speed = setInterval(() => {
   	  this.gravity();
   	  this._checkRows();
-  	}, 1000);  
+  	}, 10);
+  	document.addEventListener("keyup", this.onKeyUp);
   }
 
   componentWillUnmount(){
